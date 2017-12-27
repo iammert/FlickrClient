@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+def libraries = rootProject.ext.libraries
+def configuration = rootProject.ext.configuration
+
+android {
+    compileSdkVersion configuration.compileSdkVersion
+
+    flavorDimensions "build"
+    productFlavors {
+        dev {
+            dimension "build"
+            applicationIdSuffix ".dev"
+            minSdkVersion configuration.devMinSdkVersion
+            buildConfigField "String", "API_URL", '"https://api.flickr.com/services/"'
+            buildConfigField "String", "API_KEY", '"77ac26a174a292ddc1184b1f31f53a3e"'
+        }
+        prod {
+            dimension "build"
+            minSdkVersion configuration.minSdkVersion
+            buildConfigField "String", "API_URL", '"https://api.flickr.com/services/"'
+            buildConfigField "String", "API_KEY", '"77ac26a174a292ddc1184b1f31f53a3e"'
+        }
+    }
+
+    defaultConfig {
+        applicationId configuration.package
+        minSdkVersion configuration.minSdkVersion
+        targetSdkVersion configuration.targetSdkVersion
+        versionCode configuration.versionCode
+        versionName configuration.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:${libraries.support}"
+    implementation "com.android.support:design:${libraries.support}"
+    implementation "com.android.support:cardview-v7:${libraries.support}"
+    implementation "com.squareup.retrofit2:retrofit:${libraries.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libraries.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofit}"
+    implementation "com.squareup.okhttp3:okhttp:${libraries.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${libraries.okhttp}"
+    implementation "com.google.dagger:dagger-android:${libraries.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${libraries.dagger}"
+    implementation "com.google.dagger:dagger:${libraries.dagger}"
+    implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjava}"
+    implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroid}"
+    implementation "android.arch.lifecycle:runtime:${libraries.archRuntime}"
+    implementation "android.arch.lifecycle:extensions:${libraries.arch}"
+    implementation "android.arch.lifecycle:reactivestreams:${libraries.arch}"
+    implementation "com.squareup.picasso:picasso:${libraries.picasso}"
+    implementation "com.facebook.stetho:stetho:${libraries.stetho}"
+    implementation "org.parceler:parceler-api:${libraries.parceler}"
+    implementation "com.github.chrisbanes:PhotoView:${libraries.photoView}"
+
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    annotationProcessor 'com.android.databinding:compiler:3.0.1'
+    annotationProcessor "org.parceler:parceler:${libraries.parceler}"
+}

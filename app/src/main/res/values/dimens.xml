@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="size_avatar">56dp</dimen>
+    <dimen name="size_card_photo">320dp</dimen>
+
+    <dimen name="size_text_medium">14sp</dimen>
+    <dimen name="size_text_large">18sp</dimen>
+
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+
+    <dimen name="card_radius">4dp</dimen>
+</resources>

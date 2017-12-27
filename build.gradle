@@ -1,0 +1,57 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+ext {
+
+    configuration = [
+            package          : "iammert.com.flickrclient",
+            compileSdkVersion: 27,
+            targetSdkVersion : 27,
+            minSdkVersion    : 15,
+            devMinSdkVersion : 23,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+
+    libraries = [
+            support    : "27.0.2",
+            arch       : "1.0.0",
+            archRuntime: "1.0.3",
+            dagger     : "2.13",
+            rxjava     : "2.1.6",
+            rxandroid  : "2.0.1",
+            okhttp     : "3.9.0",
+            retrofit   : "2.3.0",
+            picasso    : "2.5.2",
+            stetho     : "1.5.0",
+            parceler   : "1.1.9",
+            photoView  : "2.0.0"
+    ]
+
+}

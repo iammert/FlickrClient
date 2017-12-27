@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="iammert.com.flickrclient.util.ImageUtils" />
+
+        <import type="iammert.com.flickrclient.util.binding.ImageBindingAdapter.ImageShape" />
+
+        <variable
+            name="photo"
+            type="iammert.com.flickrclient.data.model.RecentPhotoInfo" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_card_photo"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_card_photo"
+                android:transitionName="image"
+                app:imageUrl="@{photo.imageUrl}"
+                app:placeHolder="@{@drawable/placeholder_image}" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/shadow_black">
+
+                <ImageView
+                    android:id="@+id/imageViewAvatar"
+                    android:layout_width="@dimen/size_avatar"
+                    android:layout_height="@dimen/size_avatar"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_16dp"
+                    app:imageShape="@{ImageShape.CIRCLE}"
+                    app:imageUrl="@{ImageUtils.getProfileImage(photo.person)}"
+                    app:placeHolder="@{@drawable/placeholder_profile}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_16dp"
+                    android:layout_toRightOf="@+id/imageViewAvatar"
+                    android:singleLine="true"
+                    android:text="@{photo.person.username.content}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/size_text_large"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>
